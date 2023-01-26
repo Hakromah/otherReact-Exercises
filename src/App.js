@@ -1,10 +1,11 @@
 import React from 'react'
-import Welcome from './exercises/funcCoponent01/Welcome'
+import Welcome from './Welcome'
+
 
 export const App = () => {
   return (
     <div>
-      <Welcome name= 'Depaul'/>
+      <Welcome name="Hassan"/>
     </div>
   )
 }
