@@ -6,15 +6,14 @@ const useGithubUser = () => {
 	const [loading, setLoading] = useState(false);
 
 	async function fetchData() {
+		setLoading(true);
 		try {
 			const getData = await fetch(`https://api.github.com/users/Hakromah`);
 			const json = await getData.json();
 			setData(json);
 			console.log(json);
-
 		} catch (error) {
 			setError(error);
-
 		} finally {
 			setLoading(false);
 		}
@@ -29,5 +28,5 @@ const useGithubUser = () => {
 		error,
 		loading,
 	};
-}
+};
 export default useGithubUser;
