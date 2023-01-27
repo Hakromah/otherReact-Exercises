@@ -1,14 +1,11 @@
 import React from 'react';
-import GithubUserList from './GithubUserList';
-
-
+import GithubUser from './GithubUser';
 
 
 export default function App() {
 	return (
 		<div>
-			<GithubUserList/>
-         
+        <GithubUser/>
 		</div>
 	);
 }
