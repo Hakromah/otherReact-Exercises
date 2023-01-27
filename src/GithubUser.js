@@ -26,16 +26,9 @@ export const GithubUser = ({ username }) => {
 
 	return (
 		<div>
-			
 			{error && <h2>Data not fund</h2>}
 			{loading && <h2>Data is loading...</h2>}
-			{data.map((item) => (
-				<h1 key={item.id}>{item.name}</h1>
-			))}
+			<h1 key={data.id}>{data.name}</h1>
 		</div>
 	);
 };
-
-
-
-
