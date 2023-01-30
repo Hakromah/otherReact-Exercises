@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-export default function GithubUser() {
-	const [user, setUser] = useState([]);
+export default function GithubUser({setUser}) {
 	const [search, setSearch] = useState('');
 
 	const handleClick = () => {
 		fetch(`https://api.github.com/users/${search}`)
 			.then((response) => response.json())
 			.then((data) => {
-				setUser(data);
+				setUser(prev => [...prev,data]);
 			});
 		setSearch('');
 	};
@@ -25,7 +24,7 @@ export default function GithubUser() {
 			/>
 			<button onClick={handleClick}>Search</button>
 			<h2>
-			{user.name}
+			
 			</h2>
 		</div>
 	);

@@ -1,11 +1,12 @@
 import React from 'react';
-import GithubUser from './GithubUser';
+import GithubuserList from './GithubuserList';
+
 
 
 export default function App() {
 	return (
 		<div>
-        <GithubUser/>
+       <GithubuserList/>
 		</div>
 	);
 }
