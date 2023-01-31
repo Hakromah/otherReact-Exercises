@@ -1,14 +1,24 @@
-import React from "react";
+import React from 'react';
 
+export class Counter extends React.Component {
+	state = {
+		count: this.props.initialCount,
+	};
 
-export class Counter extends React.Component{
+	constructor(props) {
+		super(props);
+		setInterval(() => {
+			this.setState({
+				count: this.state.count + this.props.incrementAmount,
+			});
+		}, this.props.incrementInterval);
+	}
 
-   
-   render(){
-      return(
-         <div>
-           <h1>{this.props.propsCounter}</h1>
-         </div>
-      )
-   }
+	render() {
+		return (
+			<div>
+				<h1>{this.state.count}</h1>
+			</div>
+		);
+	}
 }
