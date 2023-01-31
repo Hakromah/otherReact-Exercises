@@ -8,7 +8,7 @@ const useGithubUser = () => {
 	async function fetchData() {
 		setLoading(true);
 		try {
-			const getData = await fetch(`https://api.github.com/users/Hakromah`);
+			const getData = await fetch(`https://api.github.com/users/$username}`);
 			const json = await getData.json();
 			setData(json);
 			console.log(json);
@@ -20,7 +20,7 @@ const useGithubUser = () => {
 	}
 
 	useEffect(() => {
-		fetchData();
+		fetchData(username);
 	}, []);
 
 	return {
