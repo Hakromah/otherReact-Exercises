@@ -12,17 +12,14 @@ export default function App() {
 			<br />
 			<Link to="/counter">Counter</Link>
 			<br />
-			<Link to="/ShowGithubUser">Show Github User</Link>
+			<Link to="/user">Show Github User</Link>
 			<Routes>
 				<Route path="/" element={<Welcome name="Hassan" />} />
 				<Route path="/counter" element={<Counter />} />
-				<Route path="/ShowGithubUser" element={<GithubUserList/>}>
-					<Route path=':users' element={<ShowGithubUser/>}/>
+				<Route path=":users" element={<GithubUserList />}>
+					<Route path="username" element={<ShowGithubUser />} />
 				</Route>
-				
 			</Routes>
 		</div>
 	);
 }
-
-

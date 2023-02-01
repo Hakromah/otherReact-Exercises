@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 export default function GithubUserList() {
 	const [user, setUser] = useState([]);
@@ -14,11 +15,13 @@ export default function GithubUserList() {
 
 	return (
 		<div>
-			{user.map((user, i) => (
-				<li key={i}>
-					{user.login}
-				</li>
-			))}
+			<ul>
+				{user &&
+					user.map((user) => (
+						<li key={user.id}><Link to={`/user/${user.login}`}>{user.login}</Link></li>
+					))}
+			</ul>
+         <Outlet/>
 		</div>
 	);
 }
