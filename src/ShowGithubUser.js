@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function ShowGithubUser() {
 	const { user} = useParams();
 	return (
 		<div>
-		   {user}
+		<h4 style={{fontWeight:'bold'}}>GithobUserName: {user}</h4>
+		<Link to="/users">Back</Link>
 		</div>
 	);
 }

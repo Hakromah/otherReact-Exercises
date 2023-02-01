@@ -17,12 +17,14 @@ export default function GithubUserList() {
 		<div>
 			<ul>
 				{user &&
-					user.map((user, i) => (
-						<li key={i}>
-							<Link to={`/users/${user.login}`}>{user.login}</Link>
+					user.map((item) => (
+						<li key={item.id}>
+							<Link to={`/users/${item.login}`}>{item.login}</Link>
 						</li>
 					))}
 			</ul>
+			<hr />
+			
 			<Outlet />
 		</div>
 	);
