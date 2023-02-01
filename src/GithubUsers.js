@@ -1,45 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useSWR from 'swr';
 
-const useGithubUser = () => {
-	const [data, setData] = useState([]);
-	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(false);
+const fetcher = (...args) => fetch(...args).then((r) => r.json());
 
-	async function fetchData() {
-		try {
-			const getData = await fetch(`https://api.github.com/users/Hakromah`);
-			const json = await getData.json();
-			setData(json);
-			console.log(json);
+export function useGithubUser(){
 
-		} catch (error) {
-			setError(error);
+	const { data, error, mutate } = useSWR('https://api.github.com/users', fetcher);
 
-		} finally {
-			setLoading(false);
-		}
-	}
+   function refrech() {
+      mutate()
+   }
 
-	useEffect(() => {
-		fetchData();
-	}, []);
-
-	return {
-		data,
-		error,
-		loading,
-	};
+   return {
+      data:data,
+      onRefrech: refrech,
+      onError: error,
+      isLoading: !data && !error
+   }
 }
+ 
+function GithubUser() {
+	const {data, onRefrech, onError, isLoading} =useGithubUser()
 
-export default function GithubUser() {
-	const { data, error, loading } = useGithubUser();
-
+	console.log(data);
 	return (
 		<div>
-			<h2>Github User Data </h2>
-			{error && <h2>Data not fund</h2>}
-			{loading && <h2>Data is loading...</h2>}
-			<h1 key={data.id}>{data.name}</h1>
+			GithubUser
+         {onError && <h3>Data not found</h3>}
+         {isLoading && <h3>Data is loading...</h3>}
+			{data && data.map((user) => <li key={user.id}>{user.login}</li>)}
+         <button onClick={onRefrech}>Refrech</button>
 		</div>
 	);
-}
+};
+
+export default GithubUser;
