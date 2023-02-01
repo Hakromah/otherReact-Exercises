@@ -3,10 +3,10 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 function ShowGithubUser() {
-	const { username} = useParams();
+	const { user} = useParams();
 	return (
 		<div>
-			user {username}
+		   {user}
 		</div>
 	);
 }

@@ -14,10 +14,11 @@ export default function App() {
 			<br />
 			<Link to="/user">Show Github User</Link>
 			<Routes>
-				<Route path="/" element={<Welcome name="Hassan" />} />
+				<Route path="/" element={<Welcome name="Hassan S Kromah" />} />
 				<Route path="/counter" element={<Counter />} />
-				<Route path=":users" element={<GithubUserList />}>
-					<Route path="username" element={<ShowGithubUser />} />
+				<Route path="/users" element={<GithubUserList />}>
+               <Route index element={<p>Select the users</p>}/>
+               <Route path=":user" element={<ShowGithubUser />} />
 				</Route>
 			</Routes>
 		</div>
