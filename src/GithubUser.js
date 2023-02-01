@@ -5,23 +5,24 @@ const useGithubUser = () => {
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	async function fetchData() {
-		try {
-			const getData = await fetch(`https://api.github.com/users/Hakromah`);
-			const json = await getData.json();
-			setData(json);
-			console.log(json);
+	const username = "kam2023";
+	function fetchData(username) {
+		console.log(username);
 
-		} catch (error) {
-			setError(error);
+		fetch(`https://api.github.com/users/${username}`)
+			.then((json) => json.json())
+			.then((data) => setData(data));
 
-		} finally {
-			setLoading(false);
+		if (error) {
+			setError(new Error('Data not found'));
+		}
+		if (!error && !data) {
+			setLoading(true);
 		}
 	}
 
 	useEffect(() => {
-		fetchData();
+		fetchData(username);
 	}, []);
 
 	return {
@@ -29,7 +30,7 @@ const useGithubUser = () => {
 		error,
 		loading,
 	};
-}
+};
 
 export default function GithubUser() {
 	const { data, error, loading } = useGithubUser();
@@ -39,7 +40,7 @@ export default function GithubUser() {
 			<h2>Github User Data </h2>
 			{error && <h2>Data not fund</h2>}
 			{loading && <h2>Data is loading...</h2>}
-			<h1 key={data.id}>{data.name}</h1>
+			<h1 key={data.id}>{data.login}</h1>
 		</div>
 	);
 }
