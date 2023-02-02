@@ -1,30 +1,27 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
 
-export default function CarDetails() {
-   const model = useRef()
-   const year = useRef()
-   const color = useRef()
+export default function CarDetails(props) {
+	const model = useRef(null);
+	const year = useRef(null);
+	const color = useRef(null);
 
-   function handleSubmit(evt) {
-      evt.preventDefault()
+	function handleSubmit() {
+		console.log(model.current.value);
+		console.log(year.current.value);
+		console.log(color.current.value);
+	}
 
-      console.log(model.current.value);
-      console.log(year.current.value);
-      console.log(color.current.value);
-   }
+	useEffect(() => {
+		handleSubmit();
+	}, []);
 
-   useEffect(() => {
-      handleSubmit()
-   }, [])
-
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-         <button>Submit </button>
-         <input type="text"  ref={model} />
-         <input type="date"  ref={year} />
-         <input type="color"  ref={color}/>
-      </form>
-    </div>
-  )
+	return (
+		<form >
+			
+			<input type="text" ref={model} defaultValue={props.initialModel} /> <br />
+			<input type="date" ref={year} defaultValue={props.initialYear} /> <br />
+			<input type="color" ref={color} defaultValue={props.initialColor} />
+         <button onClick={handleSubmit}>Submit</button>
+		</form>
+	);
 }
