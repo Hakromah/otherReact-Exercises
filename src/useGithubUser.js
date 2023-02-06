@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const useGithubUser = () => {
+const useGithubUser = (user) => {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const user = 'Hakromah';
 
 	async function fetchData() {
 		setLoading(true);
@@ -22,8 +21,11 @@ const useGithubUser = () => {
 	}
 
 	useEffect(() => {
-		fetchData(user);
-	}, []);
+		if(user !== undefined) {
+			fetchData(user);
+		}
+		
+	}, [user]);
 
 	return {
 		data,
