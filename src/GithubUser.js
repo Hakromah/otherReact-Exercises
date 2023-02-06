@@ -1,7 +1,7 @@
 import useGithubUser from "./useGithubUser";
 
-export default function GithubUser() {
-	const { data, error, loading } = useGithubUser();
+export default function GithubUser({user}) {
+	const { data, error, loading } = useGithubUser(user);
 
 	return (
 		<div>
