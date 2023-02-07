@@ -2,9 +2,9 @@ import React from 'react';
 import Login from './Login';
 
 export class App extends React.Component {
-	onLoginFunction = (a, b, c) => {
-		console.log(a, b, c);
-	};
+	onLoginFunction(loginState) {
+		console.log(loginState);
+	}
 
 	render() {
 		return (
