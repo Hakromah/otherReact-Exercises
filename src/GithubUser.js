@@ -11,7 +11,7 @@ export default function GithubUser({ user}) {
 				console.log(data)//! console log to check if it receives the data
 			});
 	}, [user])
- 
+
 	useEffect(() => {
 		if (user.length > 0) {
 			localStorage.setItem('items', JSON.stringify(user));
@@ -21,7 +21,7 @@ export default function GithubUser({ user}) {
 	useEffect(() => {
 		let getData = JSON.parse(localStorage.getItem('items'));
 		if (getData) {
-			setUserInfo(getData);
+			setUserInfo([getData]);
 		}
 	}, []);
 

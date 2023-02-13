@@ -14,10 +14,8 @@ export default function GithubuserList() {
 				value={search}
 				onChange={(evt) => setSearch(evt.target.value)}
 			/>
-			<button onClick={() => setUsers([search, ...users], setSearch(''))} >Search</button>
-			{users && users.map((usr, i) => (
-				<GithubUser key={i} user={usr} />
-			))}
+			<button onClick={() => setUsers([search, ...users], setSearch(''))}>Search</button>
+			{users && users.map((el, i) => <GithubUser key={i} user={el} />)}
 		</div>
 	);
 }
