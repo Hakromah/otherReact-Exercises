@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-export default function GithubUser({ setUser, user }) {
-	const [search, setSearch] = useState('');
+export default function GithubUser({ user}) {
+	const [userInfo, setUserInfo] = useState();
 
-	const handleClick = () => {
-		//Preventing empty form submition
-		if (!search) {
-			alert('Enter Github username ....');
-			return;
-		}
-
-		//fetching
-		fetch(`https://api.github.com/users/${search}`)
+	useEffect(() => {
+		fetch(`https://api.github.com/users/${user}`)
 			.then((response) => response.json())
 			.then((data) => {
-				setUser((prev) => [...prev, data]);
+				setUserInfo(data);
+				console.log(data)//! console log to check if it receives the data
 			});
-		setSearch('');
-	};
-
+	}, [user])
+ 
 	useEffect(() => {
 		if (user.length > 0) {
 			localStorage.setItem('items', JSON.stringify(user));
@@ -28,21 +21,15 @@ export default function GithubUser({ setUser, user }) {
 	useEffect(() => {
 		let getData = JSON.parse(localStorage.getItem('items'));
 		if (getData) {
-			setUser(getData);
+			setUserInfo(getData);
 		}
 	}, []);
 
 	return (
 		<div>
-			<h1 style={{ color: 'purple' }}>Github Users</h1>
-
-			<input
-				type="text"
-				name="name"
-				value={search}
-				onChange={(evt) => setSearch(evt.target.value)}
-			/>
-			<button onClick={handleClick}>Search</button>
+			<h2>
+			{userInfo && userInfo.name}
+		</h2>
 		</div>
 	);
 }
