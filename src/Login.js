@@ -24,7 +24,7 @@ export class Login extends Component {
 			});
 		}
 	};
-//! to reset the form whe after the submition
+	//! to reset the form whe after the submition
 	handleClick() {
 		this.setState({
 			username: '',
@@ -66,8 +66,11 @@ export class Login extends Component {
 				/>
 				<br />
 
-				<button 
-					onClick={() => this.handleClick(this.props.onLogin({ username, password, remember }))}
+				<button
+					onClick={() => {
+						this.handleClick();
+						this.props.onLogin({ username, password, remember });
+					}}
 					disabled={this.state.disabled}
 				>
 					Login
@@ -77,15 +80,6 @@ export class Login extends Component {
 	}
 }
 export default Login;
-
-
-
-
-
-
-
-
-
 
 // import React, { Component } from 'react';
 
